@@ -17,7 +17,7 @@ gulp.task('css', function () {
     .pipe(autoprefixer({
       browsers: ['> 5%', 'ie 8', 'ios 6']
     }))
-    // .pipe(minCss({ keepSpecialComments: 1 }))
+    .pipe(minCss({ keepSpecialComments: 1 }))
     .pipe(gulp.dest(config.dest))
     .pipe(reload({stream: true}))
     .pipe(size({showFiles: true, title: 'File Size:'}))

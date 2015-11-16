@@ -37,7 +37,7 @@ class erh_Nav_Walker extends Walker_Nav_Menu {
 
     $item_html = apply_filters('erh_wp_nav_menu_item', $item_html);
     $output .= $item_html;
-  
+
   }
 
   function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
