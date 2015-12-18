@@ -1,3 +1,11 @@
+<?php
+/**
+ * The template for displaying the footer
+ *
+ * Contains the closing of the page-wrap dive and the footer itself
+ *
+ */
+?>
     </div>
 
     <footer>

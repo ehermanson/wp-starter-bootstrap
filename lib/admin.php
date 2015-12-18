@@ -15,7 +15,7 @@ if (!function_exists('erh_profile_fields') ):
     return $contactmethods;
   }
 
-  add_filter('user_contactmethods','erh_profile_fields',10,1);
+  add_filter('user_contactmethods', 'erh_profile_fields', 10, 1);
 
 endif;
 
@@ -54,7 +54,7 @@ if (!function_exists('erh_replace_howdy') ):
     ) );
   }
 
-  add_filter( 'admin_bar_menu', 'erh_replace_howdy',25 );
+  add_filter( 'admin_bar_menu', 'erh_replace_howdy', 25 );
 
 endif;
 

@@ -1,8 +1,52 @@
 <?php
 
-$fontURL = 'http://fonts.googleapis.com/css?family=Open+Sans:300,400';
-$cssPath = get_template_directory_uri() . '/assets/build/css/';
-$jsPath  = get_template_directory_uri() . '/assets/build/js/';
+/***************************************************************
+* Function erh_font_url
+* Registers font urls to be loaded in the styles function
+***************************************************************/
+
+if ( ! function_exists( 'erh_font_url' ) ) :
+
+function erh_font_url() {
+  $fonts_url = '';
+  $fonts = array();
+
+  $fonts[] = 'Open+Sans:300,400';
+
+  if ( $fonts ) {
+    $fonts_url = add_query_arg( array(
+      'family' => implode( '|', $fonts )
+    ), 'https://fonts.googleapis.com/css' );
+  }
+
+  return $fonts_url;
+}
+
+endif;
+
+/***************************************************************
+* Function erh_asset_path
+* Returns the paths for CSS and JS files
+***************************************************************/
+
+if ( ! function_exists( 'erh_asset_path' ) ) :
+
+function erh_asset_path( $type ) {
+  $asset_path = '';
+  $base_path = get_template_directory_uri() . '/assets/build/';
+
+  if ( $type === 'js' ) {
+    $asset_path = $base_path . 'js/';
+  }
+
+  if ($type === 'css' ) {
+    $asset_path = $base_path . 'css/';
+  }
+
+  return $asset_path;
+}
+
+endif;
 
 /***************************************************************
 * Function erh_styles
@@ -11,22 +55,17 @@ $jsPath  = get_template_directory_uri() . '/assets/build/js/';
 
 function erh_styles() {
 
-  global $fontURL;
-  global $cssPath;
-  global $jsPath;
+  wp_enqueue_style( 'erh-fonts', erh_font_url() );
+  wp_enqueue_style( 'erh-styles', erh_asset_path('css') . 'style.css', array(), filemtime( get_template_directory().'/assets/build/css/style.css' ) );
 
-  wp_enqueue_style( 'erh-fonts', $fontURL );
-  wp_enqueue_style( 'erh-styles', $cssPath . 'style.css', array(), filemtime( get_template_directory().'/assets/build/css/style.css' ) );
-
-  // wp_enqueue_script( 'erh-modernizr', $jsPath . 'modernizr.min.js', array('jquery'), null, false );
-  wp_enqueue_script( 'erh-js', $jsPath . 'global.min.js', array('jquery'), null, true );
+  // wp_enqueue_script( 'erh-modernizr', erh_asset_path('js') . 'modernizr.min.js', array('jquery'), null, false );
+  wp_enqueue_script( 'erh-js', erh_asset_path('js') . 'global.min.js', array('jquery'), null, true );
 
   /// LiveReload for local development
   if (in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
     wp_register_script('livereload', 'http://localhost:8888/livereload.js?snipver=1', null, false, true);
     wp_enqueue_script('livereload');
   }
-
 }
 
 add_action( 'wp_enqueue_scripts', 'erh_styles' );
@@ -38,12 +77,8 @@ add_action( 'wp_enqueue_scripts', 'erh_styles' );
 
 function erh_add_editor_styles() {
 
-  global $fontURL;
-  global $cssPath;
-
-  add_editor_style( $cssPath . 'editor-style.css' );
-  add_editor_style( str_replace( ',', '%2C', $fontURL ) );
-
+  add_editor_style( erh_asset_path('css') . 'editor-style.css' );
+  add_editor_style( str_replace( ',', '%2C', erh_font_url() ) );
 }
 
 add_action( 'init', 'erh_add_editor_styles' );
@@ -57,9 +92,7 @@ add_action( 'init', 'erh_add_editor_styles' );
 
 
 function erh_login_css() {
-  global $cssPath;
-
-  wp_enqueue_style( 'erh_login_css', $cssPath . 'login.css', false );
+  wp_enqueue_style( 'erh_login_css', erh_asset_path('css') . 'login.css', false );
 }
 
 function erh_login_url() {

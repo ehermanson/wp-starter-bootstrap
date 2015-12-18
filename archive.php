@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying archive pages
+ *
+ * Used to display archive-type pages if nothing more specific matches a query.
+ *
+ */
+
+get_header(); ?>
 
   <section class="main archive-content" role="main">
 
@@ -10,11 +18,9 @@
       <?php while ( have_posts() ) : the_post(); ?>
 
         <article <?php post_class() ?>>
-
           <header>
             <h1><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>
-
-            <?php get_template_part( 'templates/entry', 'meta' ); ?>
+            <?php get_template_part( 'templates/entry-meta' ); ?>
           </header>
 
           <div class="entry">
@@ -25,7 +31,7 @@
 
       <?php endwhile; ?>
 
-      <?php get_template_part( 'templates/page', 'nav' ); ?>
+      <?php the_posts_pagination(); ?>
 
   <?php else : ?>
 
@@ -36,5 +42,4 @@
   </section>
 
 <?php get_sidebar(); ?>
-
 <?php get_footer(); ?>

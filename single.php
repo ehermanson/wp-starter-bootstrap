@@ -1,17 +1,28 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying all single posts and attachments
+ *
+ */
 
-	<section class="main" role="main">
+get_header(); ?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
+  <section class="main" role="main">
 
-			<?php get_template_part( 'templates/content', 'single' ); ?>
+    <?php
 
-			<?php comments_template(); ?>
+    while ( have_posts() ) : the_post();
 
-		<?php endwhile; ?>
+      get_template_part( 'templates/content-single' );
 
-	</section>
+      // If comments are open or there is at least one comment, get the comment template
+      if ( comments_open() || get_comments_number() ) {
+        comments_template();
+      }
+
+    endwhile;
+    ?>
+
+  </section>
 
 <?php get_sidebar(); ?>
-
 <?php get_footer(); ?>

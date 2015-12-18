@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
+<?php
+/**
+ * The template for displaying the header
+ *
+ * Displays all of the head element and everything up until the "page-wrap" div.
+ *
+ */
+
+?><!DOCTYPE html>
+<html class="no-js" <?php language_attributes(); ?>>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
   <title><?php wp_title( '|', true, 'right' ); ?></title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <?php
@@ -13,9 +19,7 @@
     wp_enqueue_script( 'comment-reply' );
   }
   ?>
-
   <?php wp_head(); ?>
-
 </head>
 <!--[if lt IE 10]>
 <div class="update-browser"><p>Your browser is outdated and potentially unsafe. Please <a href="http://browsehappy.com/">upgrade your broswer</a> for the best experience on this site and many others.</div>

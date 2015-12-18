@@ -1,6 +1,9 @@
 <?php
 
-// Custom Search Form
+/**
+ * Displays the custom Search Form
+ *
+ */
 
 ?>
 

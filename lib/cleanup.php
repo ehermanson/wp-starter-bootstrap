@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 /***************************************************************
 * Function erh_head_cleanup
 * Function erh_remove_versions
-* Cleanup the stuff WordPress inserts into <head> 
+* Cleanup the stuff WordPress inserts into <head>
 ***************************************************************/
 
 if( ! function_exists('erh_head_cleanup') ):
@@ -33,8 +33,8 @@ endif;
 
 if( ! function_exists('erh_remove_admin_bar') ):
 
-  function erh_remove_admin_bar(){ 
-    return false; 
+  function erh_remove_admin_bar(){
+    return false;
   }
 
   add_filter( 'show_admin_bar' , 'erh_remove_admin_bar');

@@ -1,39 +1,44 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying search results pages
+ *
+ */
 
-	<section class="main" role="main">
+get_header(); ?>
 
-		<?php if ( have_posts() ) : ?>
+  <section class="main" role="main">
 
-			<h2 class="search-title"><?php printf( __( 'Search Results for: %s', 'shape' ), '<span>' . get_search_query() . '</span>' ); ?></h2>
+    <?php if ( have_posts() ) : ?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+      <h2 class="search-title"><?php printf( __( 'Search Results for: %s', 'shape' ), '<span>' . get_search_query() . '</span>' ); ?></h2>
 
-				<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
+      <?php while ( have_posts() ) : the_post(); ?>
 
-					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+        <article <?php post_class() ?> id="post-<?php the_ID(); ?>">
 
-					<?php get_template_part( 'templates/entry', 'meta' ); ?>
+          <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 
-					<div class="entry">
+          <?php get_template_part( 'templates/entry-meta'); ?>
 
-						<?php the_excerpt(); ?>
+          <div class="entry">
 
-					</div>
+            <?php the_excerpt(); ?>
 
-				</article>
+          </div>
 
-			<?php endwhile; ?>
+        </article>
 
-			<?php get_template_part( 'templates/page', 'nav' ); ?>
+      <?php endwhile; ?>
 
-		<?php else : ?>
+      <?php the_posts_pagination(); ?>
 
-			<h1>Nothing found. Try searching something else or using the main menu.</h1>
+    <?php else : ?>
 
-		<?php endif; ?>
+      <h1>Nothing found. Try searching something else or using the main menu.</h1>
 
-	</section>
+    <?php endif; ?>
+
+  </section>
 
 <?php get_sidebar(); ?>
-
 <?php get_footer(); ?>

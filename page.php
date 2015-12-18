@@ -1,15 +1,20 @@
-<?php get_header(); ?>
+<?php
+/**
+ * This is the template that displays all pages by default.
+ *
+ */
 
-	<section class="main" role="main">
+get_header(); ?>
 
-		<?php while ( have_posts() ) : the_post(); ?>
+  <section class="main" role="main">
 
-			<?php get_template_part( 'templates/content', 'page' ); ?>
+    <?php while ( have_posts() ) : the_post(); ?>
 
-		<?php endwhile; ?>
+      <?php get_template_part( 'templates/content-page' ); ?>
 
-	</section>
+    <?php endwhile; ?>
+
+  </section>
 
 <?php get_sidebar(); ?>
-
 <?php get_footer(); ?>
