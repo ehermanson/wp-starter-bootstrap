@@ -24,7 +24,11 @@ get_header(); ?>
       </article>
 
     <?php endif; ?>
-    <?php the_posts_pagination(); ?>
+    <?php the_posts_pagination( array(
+        'mid_size' => 2,
+        'prev_text' => 'Back',
+        'next_text' => 'Next',
+    ) ); ?>
   </section>
 
 <?php get_sidebar(); ?>

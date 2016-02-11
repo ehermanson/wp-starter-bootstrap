@@ -1,39 +1,6 @@
 <?php
 
 /***************************************************************
-* Function erh_pagenav
-* Pagination
-***************************************************************/
-
-if (!function_exists('erh_pagenav') ):
-
-  function erh_pagenav() {
-    global $wp_query, $wp_rewrite;
-    $pages = '';
-    $max = $wp_query->max_num_pages;
-    if(!$current = get_query_var('paged')) $current = 1;
-    $base = str_replace(999999999, '%#%', get_pagenum_link(999999999));
-
-   $total = 1;
-
-   $args = array(
-      'base'         => $base,
-      'total'        => $max,
-      'current'      => $current,
-      'end_size'     => 1,
-      'mid_size'     => 4,
-      'prev_text'    => '&laquo; Previous',
-      'next_text'    => 'Next &raquo;'
-    );
-
-    if($max > 1) echo '<div class="page-nav">';
-      echo $pages . paginate_links($args);
-    if($max > 1) echo '</div>';
-  }
-
-endif;
-
-/***************************************************************
 * Function erh_trim_excerpt
 * Detailed output of Post Excerpt
 ***************************************************************/
